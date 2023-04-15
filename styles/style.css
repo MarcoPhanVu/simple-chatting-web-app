@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+    list-style-type: none;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    line-height: 16px;
+}
+
+.chat-container {
+    /* background-color: salmon; */
+    width: 500px;
+    height: 500px;
+    margin: 60px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-section {
+    border: solid #000 2px;
+    flex: 9;
+    background-color: #fff;
+    overflow-y: auto;
+}
+
+.chat-message {
+    display: flex;
+    flex-direction: column;
+    padding: 4px 12px;
+}
+
+.chat-message > .sender {
+    font-weight: 800;
+}
+
+.chat-message > .message {
+    background-color: rgb(40, 72, 92);
+    color: rgb(240, 240, 240);
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 4px 8px;
+    border-radius: 16px;
+    border-top-left-radius: 0px;
+    align-self: flex-start;
+    line-height: 24px;
+}
+
+.input-section {
+    padding: 8px;
+    display: flex;
+    border: solid #000 2px;
+}
+
+.input-section > input {
+    flex: 7;
+    /* height: 100%; */
+    font-size: 14px;
+    padding: 8px 12px;
+}
+
+.input-section > button {
+    flex: 1;
+    /* height: 100%; */
+    font-size: 16px;
+}
