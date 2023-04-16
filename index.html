@@ -8,53 +8,30 @@
     <link rel="stylesheet" type="text/css" href="./styles/style.css">
 
     <script defer src="http://localhost:5050/socket.io/socket.io.js"></script>
-
+    <script defer src="scripts/script.js"></script>
 
 </head>
 
 <body>
     <div class="chat-container">
-        <div class="chat-section">
+        <form id="roomID-form" class="input-section"  action="">
+            <input id="roomID-box" placeholder="Enter room ID" type="text">
+            <button type="submit" id="roomID-send">Join</button>
+        </form>
+        <div id="chat-section">
             <div class="chat-message">
-                <div class="sender">Name 0</div>
-                <div class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, aliquid?</div>
+                <h4 class="sender">Name 0</h4>
+                <p class="message">Lorem ipsum Asperiores, aliquid?</p>
             </div>
             <div class="chat-message">
-                <div class="sender">Name 1</div>
-                <div class="message">Some text Lorem ipsum dolor sit amet.</div>
-            </div>
-            <div class="chat-message">
-                <div class="sender">Name 2</div>
-                <div class="message">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore mollitia debitis illum placeat sed perspiciatis quae quis quia deleniti</div>
-            </div>
-            <div class="chat-message">
-                <div class="sender">Name 3</div>
-                <div class="message">Some text Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem est minima illo placeat maxime saepe quae, repellat iste cupiditate suscipit eius rerum dicta quas, ipsum architecto provident ad eaque repellendus!</div>
-            </div>
-            <div class="chat-message">
-                <div class="sender">Name 3</div>
-                <div class="message">Some text Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem est minima illo placeat maxime saepe quae, repellat iste cupiditate suscipit eius rerum dicta quas, ipsum architecto provident ad eaque repellendus!</div>
-            </div>
-            <div class="chat-message">
-                <div class="sender">Name 3</div>
-                <div class="message">Some text Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem est minima illo placeat maxime saepe quae, repellat iste cupiditate suscipit eius rerum dicta quas, ipsum architecto provident ad eaque repellendus!</div>
-            </div>
-            <div class="chat-message">
-                <div class="sender">Name 3</div>
-                <div class="message">Some text Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem est minima illo placeat maxime saepe quae, repellat iste cupiditate suscipit eius rerum dicta quas, ipsum architecto provident ad eaque repellendus!</div>
-            </div>
-            <div class="chat-message">
-                <div class="sender">Name 3</div>
-                <div class="message">Some text Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem est minima illo placeat maxime saepe quae, repellat iste cupiditate suscipit eius rerum dicta quas, ipsum architecto provident ad eaque repellendus!</div>
+                <h4 class="sender">Name 1</h4>
+                <p class="message">Some text Lorem ipsum dolor sit amet.</p>
             </div>
         </div>
-        <form class="input-section" action="">
-            <input placeholder="Say something" type="text">
-            <button type="submit">Send</button>
+        <form id="message-form" class="input-section" action="">
+            <input id="message-box" placeholder="Say something" type="text">
+            <button type="submit" id="message-send">Send</button>
         </form>
     </div>
-
-
-    <script src="scripts/script.js"></script>
 </body>
 </html>
