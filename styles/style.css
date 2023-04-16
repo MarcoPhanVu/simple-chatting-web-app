@@ -23,7 +23,7 @@ html {
     flex-direction: column;
 }
 
-.chat-section {
+#chat-section {
     border: solid #000 2px;
     flex: 9;
     background-color: #fff;
@@ -55,12 +55,12 @@ html {
 .input-section {
     padding: 8px;
     display: flex;
-    border: solid #000 2px;
+    border: solid #000 1px;
+    gap: 8px;
 }
 
 .input-section > input {
     flex: 7;
-    /* height: 100%; */
     font-size: 14px;
     padding: 8px 12px;
 }
@@ -69,4 +69,17 @@ html {
     flex: 1;
     /* height: 100%; */
     font-size: 16px;
+}
+
+#roomID-form {
+    align-self: flex-start;
+    gap: 12px;
+}
+
+#roomID-form > input {
+    width: 200px;
+}
+
+#roomID-form > button {
+    flex: 3;
 }
