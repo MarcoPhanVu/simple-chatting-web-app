@@ -1,20 +1,22 @@
-const socket = io("http://localhost:5050");
+// const socket = io("http://localhost:5050");
 
-socket.on("connection", data => {
-    console.log(`received ${data}`);
-})
+// socket.on("connection", data => {
+//     console.log(`received ${data}`);
+// });
 
 const chattingSection = document.getElementById("chat-section");
 
 const messageForm = document.getElementById("message-form");
 const messageBox = document.getElementById("message-box");
 const messageSubmit = document.getElementById("message-send");
-
-messageBox.value = "shit happens"
-
+messageBox.value = "shit happens";
 const roomIDForm = document.getElementById("roomID-form");
 const roomIDBox = document.getElementById("roomID-box");
 const roomIDSubmit = document.getElementById("roomID-send");
+
+//Common vars
+const randomRange = (min, max) => Math.floor(Math.random()*(max-min)) + min;
+
 
 messageForm.addEventListener("submit", ev => {
     ev.preventDefault();
@@ -52,6 +54,8 @@ function addNewMessage(msg, name="no one") {
     chatMessage.appendChild(message);
 
     chattingSection.appendChild(chatMessage);
+
+    chattingSection.scrollTop = chattingSection.scrollHeight;
 }
 
 function join(id) {
@@ -59,4 +63,55 @@ function join(id) {
 }
 
 const chatMsg = document.querySelectorAll(".chat-message");
-console.log(chatMsg[1].children[1].innerHTML);
+console.log(chatMsg[0].children[1].innerHTML);
+
+
+
+
+
+const userList = [
+    "Thí Di",
+    "Tứn Cà Mu",
+    "cô Tiên xanh",
+    "Gâu Gẩu Gầu Gâu",
+    "Meu Multimedia",
+    "Chym Éng",
+    "Ngĩn Híu",
+    "Bắp xào"
+];
+
+const randomMessages = [
+    "mở toóc sô đi mọi người",
+    "mầy khoải",
+    "đâu đâu",
+    "cho coi cái này nè",
+    "ê kể nè",
+    "thôi để bữa nào kể",
+    "đá cái hẹn",
+    "ê tuần sau đi chơi đi",
+    "mãi keo",
+    "quỷ 2 mặt",
+    "quỷ này",
+    "má mì của toy",
+    "muốn được phú bà bao nuôi",
+    "lóc",
+    "cứ vậy mãi thoai",
+];
+
+
+function sendRandomMessage() {
+    console.log("sendRandomMessage");
+
+    addNewMessage(
+        randomMessages[randomRange(0, randomMessages.length)], 
+        userList[randomRange(0, userList.length)]
+    );
+
+
+    setTimeout(() => {
+        sendRandomMessage();
+        console.log("sendRandomMessage again");
+    }, 2500);
+}
+
+sendRandomMessage();
