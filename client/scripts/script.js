@@ -1,10 +1,9 @@
-
-// import { io } from "../node_modules/socket.io-client";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:8080");
+const socket = io("http://localhost:5000");
 
-socket.on("connection", data => {
+socket.on("connect", () => {
+    addNewMessage(`You've been connected with ${socket.id}`)
     console.log(`received ${data}`);
 });
 
@@ -13,10 +12,11 @@ const chattingSection = document.getElementById("chat-section");
 const messageForm = document.getElementById("message-form");
 const messageBox = document.getElementById("message-box");
 const messageSubmit = document.getElementById("message-send");
-messageBox.value = "shit happens";
 const roomIDForm = document.getElementById("roomID-form");
 const roomIDBox = document.getElementById("roomID-box");
 const roomIDSubmit = document.getElementById("roomID-send");
+
+messageBox.value = "shit happens";
 
 //Common vars
 const randomRange = (min, max) => Math.floor(Math.random()*(max-min)) + min;
@@ -66,11 +66,11 @@ function join(id) {
     console.log(`joined room ${id}`);
 }
 
-const chatMsg = document.querySelectorAll(".chat-message");
+// const chatMsg = document.querySelectorAll(".chat-message");
 
 
 const userList = [
-    "Thí Di",
+    "Yang hồ Tân Phong",
     "Tứn Cà Mu",
     "cô Tiên xanh",
     "Gâu Gẩu Gầu Gâu",
@@ -107,8 +107,7 @@ function sendRandomMessage() {
 
     setTimeout(() => {
         sendRandomMessage();
-        console.log("sendRandomMessage again");
-    }, 10000);
+    }, 8000);
 }
 
-sendRandomMessage();
+// sendRandomMessage();

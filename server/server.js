@@ -1,12 +1,12 @@
-const io = require("socket.io")(3000, {
-    cors: [
-
-    ]
-}); //port 8080
+const io = require("socket.io")(5000, {
+    cors: {
+        origin: ["http://localhost:8080"]
+    }
+});
 
 console.log("Connecting?");
 
 io.on("connection", socket => {
     socket.emit("chat-message", "Hello user");
-    console.log(`welcome ${socket.id}`);
+    console.log(`Welcome ${socket.id}`);
 });
