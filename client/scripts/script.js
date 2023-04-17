@@ -3,8 +3,8 @@ import { io } from "socket.io-client";
 const socket = io("http://localhost:5000");
 
 socket.on("connect", () => {
-    addNewMessage(`You've been connected with ${socket.id}`)
-    console.log(`received ${data}`);
+    addNewMessage(socket.id, `You're ${socket.id}`);
+    messageBox.value = "shit happens";
 });
 
 const chattingSection = document.getElementById("chat-section");
@@ -16,31 +16,26 @@ const roomIDForm = document.getElementById("roomID-form");
 const roomIDBox = document.getElementById("roomID-box");
 const roomIDSubmit = document.getElementById("roomID-send");
 
-messageBox.value = "shit happens";
-
 //Common vars
 const randomRange = (min, max) => Math.floor(Math.random()*(max-min)) + min;
 
-
 messageForm.addEventListener("submit", ev => {
     ev.preventDefault();
-    const message = messageBox.value;
+    const msg = messageBox.value;
+    // let tempName = "temp-name";
 
-    if (message === "") return;
-
-    addNewMessage(message);
+    if (msg === "") return;
+    
+    addNewMessage(socket.id, msg);
+    socket.emit("sending-message", socket.id, msg);
 })
 
-roomIDForm.addEventListener("submit", ev => {
-    ev.preventDefault();
-    const roomID = roomIDBox.value;
-
-    if (roomID === "") return;
-
-    join(roomID);
+socket.on("message-received", (name, msg) => {
+    addNewMessage(name, msg);
 })
 
-function addNewMessage(msg, name="no one") {
+
+function addNewMessage(name="no one", msg) {
     let senderName = document.createElement("h4");
     senderName.classList.add("sender");
     senderName.innerHTML = name;
@@ -62,11 +57,32 @@ function addNewMessage(msg, name="no one") {
     chattingSection.scrollTop = chattingSection.scrollHeight;
 }
 
+
+
+
+
+roomIDForm.addEventListener("submit", ev => {
+    ev.preventDefault();
+    const roomID = roomIDBox.value;
+
+    if (roomID === "") return;
+
+    join(roomID);
+})
+
 function join(id) {
     console.log(`joined room ${id}`);
 }
 
-// const chatMsg = document.querySelectorAll(".chat-message");
+
+
+
+
+
+
+
+
+
 
 
 const userList = [
@@ -97,7 +113,6 @@ const randomMessages = [
     "lóc",
     "cứ vậy mãi thoai",
 ];
-
 
 function sendRandomMessage() {
     addNewMessage(
