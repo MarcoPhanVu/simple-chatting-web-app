@@ -22,18 +22,23 @@ const randomRange = (min, max) => Math.floor(Math.random()*(max-min)) + min;
 messageForm.addEventListener("submit", ev => {
     ev.preventDefault();
     const msg = messageBox.value;
+    const roomID = roomIDBox.value;
     // let tempName = "temp-name";
 
     if (msg === "") return;
     
     addNewMessage(socket.id, msg);
-    socket.emit("sending-message", socket.id, msg);
+    socket.emit("sending-message", socket.id, msg, roomID);
 })
 
 socket.on("message-received", (name, msg) => {
     addNewMessage(name, msg);
 })
 
+// socket.on("room-joined", (name, roomID) => {
+//     let msg = `${name} has just joined ${roomID}`;
+//     addNewMessage("Server", msg);
+// })
 
 function addNewMessage(name="no one", msg) {
     let senderName = document.createElement("h4");
@@ -58,31 +63,17 @@ function addNewMessage(name="no one", msg) {
 }
 
 
-
-
-
 roomIDForm.addEventListener("submit", ev => {
     ev.preventDefault();
     const roomID = roomIDBox.value;
 
     if (roomID === "") return;
 
-    join(roomID);
+    socket.emit("join-room", roomID, inform => {
+        addNewMessage(socket.id, inform); //Callback Function
+        //A function to show that the user is in any room
+    });
 })
-
-function join(id) {
-    console.log(`joined room ${id}`);
-}
-
-
-
-
-
-
-
-
-
-
 
 
 const userList = [
